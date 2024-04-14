@@ -38,9 +38,9 @@ export default async function Home() {
                     Go to Chats <ArrowRight className="ml-2" />
                   </Button>
                 </Link>
-                <div className="ml-3">
+                {/* <div className="ml-3">
                   <SubscriptionButton isPro={isPro} />
-                </div>
+                </div> */}
               </>
              )}
             </div>

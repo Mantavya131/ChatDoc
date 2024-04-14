@@ -68,11 +68,11 @@ const ChatSideBar = ({ chats, chatId }: Props) => {
                     <Link href={'/'}>Logo</Link>  
                 </div>
 
-                <div className="flex justify-center w-full">
+                {/* <div className="flex justify-center w-full">
                     <Button className="mt-2 text-white bg-slate-700" disabled={loading} onClick={handleSubscription}>
                         Upgrade To Pro!
                     </Button>
-                </div>
+                </div> */}
             </div>
 
         </div>
@@ -80,3 +80,4 @@ const ChatSideBar = ({ chats, chatId }: Props) => {
 };
 
 export default ChatSideBar;
+
