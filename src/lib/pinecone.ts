@@ -9,19 +9,28 @@ import { Vector } from '@pinecone-database/pinecone/dist/pinecone-generated-ts-f
 
 let pinecone: Pinecone | null = null;
 
-export const getPineconeClient = async() => {
+// export const getPineconeClient = async() => {
+//     if (!pinecone) {
+//         pinecone = new Pinecone({
+//             apiKey: process.env.PINECONE_API_KEY!,
+//            });
+//     }
+//     return pinecone
+// }
+export async function getPineconeClient() {
     if (!pinecone) {
         pinecone = new Pinecone({
             apiKey: process.env.PINECONE_API_KEY!,
-           });
+        });
     }
-    return pinecone
+    return pinecone;
 }
+
 
 type PDFPage = {
     pageContent: string;
     metadata: {
-        loc: {pageNumber: 1}
+        loc: {pageNumber: number}
     }
 }
 
@@ -31,15 +40,23 @@ export function convertToAscii(inputString: string) {
     return inputString.replace(/[^ -~]+/g, "").replace(/\s+/g, "_");
 }
 
-export async function loadS3IntoPinecone(fileKey:string) {
-    // 1) Obtain the pdf.
-    console.log('downloading S3 into filesystem')
-    const file_name = await downloadFromS3(fileKey);
-    if (!file_name){
-        throw new Error('could not download from S3')
-    }
-    const loader = new PDFLoader(file_name);
-    const pages = (await loader.load()) as PDFPage[];
+// export async function loadS3IntoPinecone(fileKey:string) {
+//     // 1) Obtain the pdf.
+//     console.log('downloading S3 into filesystem')
+//     const file_name = await downloadFromS3(fileKey);
+//     if (!file_name){
+//         throw new Error('could not download from S3')
+//     }
+    export async function loadS3IntoPinecone(fileKey: string) {
+        console.log('Downloading S3 object into memory');
+        const fileBuffer = await downloadFromS3(fileKey);
+        if (!fileBuffer) {
+            throw new Error('Could not download from S3');
+        }
+        // Convert Buffer to Blob if necessary
+        const fileBlob = new Blob([fileBuffer], { type: 'application/pdf' });
+        const loader = new PDFLoader(fileBlob, { splitPages: true }); 
+        const pages = (await loader.load()) as PDFPage[]; 
 
     const documents = await Promise.all(pages.map(prepareDocument));
 
