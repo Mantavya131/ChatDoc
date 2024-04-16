@@ -9,3 +9,4 @@ const PDFViewer = ({pdf_url}: Props) => {
 }
 
 export default PDFViewer
+
