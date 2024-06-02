@@ -4,6 +4,8 @@ import { ClerkProvider } from '@clerk/nextjs';
 import "./globals.css";
 import Provider from "@/components/Provider";
 import {Toaster} from 'react-hot-toast';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import CookieBanner from "@/components/CookieBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +23,9 @@ export default function RootLayout({
     <ClerkProvider>
       <Provider>
         <html lang="en">
-          <body className={inter.className}>{children}<Toaster/></body>
+          <GoogleAnalytics GA_MEASUREMENT_ID='G-6DVKX14RW9'/>
+          <body className={inter.className}>{children}<Toaster/><CookieBanner/>
+          </body>
           
         </html>
       </Provider>
