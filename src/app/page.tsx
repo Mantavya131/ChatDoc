@@ -47,8 +47,7 @@ export default async function Home() {
 
 
             <p className="max-w-xl mt-1 text-lg text-blue-300">
-            Join millions of students, researchers and professionals to instantly
-            answer questions and understand research with AI
+              Transform Boring Documents into Interactive Chat Buddies! Save Time by Chatting with Your Documents Instead of Reading Them.
             </p>
             <div className="w-full mt-4 text-white">
               {isAuth ? (<FileUpload />):(

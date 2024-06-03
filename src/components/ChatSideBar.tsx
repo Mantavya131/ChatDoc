@@ -64,15 +64,10 @@ const ChatSideBar = ({ chats, chatId }: Props) => {
 
             <div className='absolute bottom-0 left-0 right-0 p-4 bg-gray-800 border-t border-gray-700'>
                 <div className='flex items-center justify-center gap-2 text-sm text-slate-500 flex-wrap'>
-                    <Link href={'/'}>Home</Link>
-                    <Link href={'/'}>Logo</Link>  
+                    <Link href={'https://donate.stripe.com/9AQfZza2OeFe4CI9AA'} className='font-bold hover:text-white hover:bg-slate-600 px-2 py-1 rounded'>
+                        Donate Here
+                    </Link>
                 </div>
-
-                {/* <div className="flex justify-center w-full">
-                    <Button className="mt-2 text-white bg-slate-700" disabled={loading} onClick={handleSubscription}>
-                        Upgrade To Pro!
-                    </Button>
-                </div> */}
             </div>
 
         </div>
